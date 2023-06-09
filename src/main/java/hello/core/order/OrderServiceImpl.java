@@ -7,8 +7,13 @@ import hello.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
-    private DiscountPolicy discountPolicy;
+    private final MemberRepository memberRepository; // final은 무조건 생성자를 통해 할당하기
+    private final DiscountPolicy discountPolicy;
+
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     /**
      * 클래스 의존 관계를 분석해 보면, 추상(인터페이스) 뿐만 아니라 구체(구현) 클래스에도 의존하고 있다.
